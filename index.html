@@ -88,6 +88,8 @@
         }
         img {
             cursor: pointer;
+            width: 100%;
+            height: 120px;
         }
     </style>
 </head>
@@ -114,16 +116,16 @@
         </div>
 
         <div class="slide hidden" id="slide3">
-            <!-- <h2>Special Video for You</h2> -->
-            <!-- <iframe class="vidzyt" src="https://www.youtube.com/embed/3LhizYTDkRM?autoplay=1&mute=1&controls=0"
+            <h2>Special Video for You</h2>
+            <iframe class="vidzyt" src="https://www.youtube.com/embed/3LhizYTDkRM?autoplay=1&mute=1&controls=0"
                 allowfullscreen>
-            </iframe> -->
+            </iframe>
             <button onclick="nextSlide()">निक्कू आगे बढ़े। ❤️</button>
         </div>
 
         <div class="slide hidden" id="slide4">
             <h2>A Message for Birthday Girl</h2>
-            <p>
+            <p style="text-align: left;">
                 <q>निक्कू, तुमसे पहले भी हम थे, पर शायद वैसे नहीं जैसे अब हैं। तुम्हारा मेरी ज़िंदगी में आना मेरे लिए
                     सबसे ख़ूबसूरत तोहफा है। <br>धन्यवाद मेरी ज़िंदगी में आने के लिए, मुझे हंसाने के लिए, और ये महसूस
                     कराने के लिए कि मैं इस दुनिया में अकेला नहीं हूँ।<br>
@@ -138,8 +140,8 @@
             <h2>🎂 केक 🎂</h2>
             <p>touch cake</p>
             <p>
-                <img id="cakeGif" src="first_part.gif" alt="Cake GIF">
-                <img id="penguinGif" src="happy-fun.gif" alt="Penguin Blowing Candle" style="display: none;">
+                <img id="cakeGif" src="first_part.gif" alt="Cake GIF" width="320px" height="320px">
+                <img id="penguinGif" src="happy-fun.gif" alt="Penguin Blowing Candle" style="display: none;" width="320px" height="320px">
             </p>
             <button onclick="nextSlide()">अगला पेज</button>
         </div>
@@ -168,6 +170,7 @@
         if (next.id === "slide6") {
             document.getElementById('birthdaysong').pause();
             document.getElementById('container').style.display = "none";
+            window.location.href = "https://www.google.com/";
         }
         setTimeout(() => {
             current.classList.add("hidden"); // Hide the current slide after animation
