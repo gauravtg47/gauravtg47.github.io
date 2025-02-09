@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Show for Mobile</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fadeIn {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .slide p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        iframe {
+            width: 100%;
+            height: 220px;
+            border-radius: 8px;
+        }
+        img {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="slide" id="slide1">
+            <h2>Sorry</h2>
+            <q>
+                माफ़ करना देरी से विश करने के लिए, पर मैंने सोचा उसी समय विश करूं जिस समय तुमने इस दुनिया को अपनी प्यारी
+                आँखों से देखा।<br> इसलिए मैंने देर से तुम्हें विश किया। अगर इससे दुख हुआ हो तो सॉरी।
+            </q>
+            <button onclick="nextSlide()">निक्कू आगे बढ़े। ❤️</button>
+        </div>
+
+        <div class="slide hidden" id="slide2">
+            <h2>Happy Birthday Nikki</h2>
+            <p>
+                <q>
+                    जन्मदिन की बहुत-बहुत बधाई निक्कू! 🎉🥳<br>आज के इस ख़ास दिन को चलो थोड़ा और बेहतर बनाते हैं। ✨💖
+                </q>
+            </p>
+            <button onclick="nextSlide()">निक्कू आगे बढ़े। ❤️</button>
+        </div>
+
+        <div class="slide hidden" id="slide3">
+            <!-- <h2>Special Video for You</h2> -->
+            <!-- <iframe class="vidzyt" src="https://www.youtube.com/embed/3LhizYTDkRM?autoplay=1&mute=1&controls=0"
+                allowfullscreen>
+            </iframe> -->
+            <button onclick="nextSlide()">निक्कू आगे बढ़े। ❤️</button>
+        </div>
+
+        <div class="slide hidden" id="slide4">
+            <h2>A Message for Birthday Girl</h2>
+            <p>
+                <q>निक्कू, तुमसे पहले भी हम थे, पर शायद वैसे नहीं जैसे अब हैं। तुम्हारा मेरी ज़िंदगी में आना मेरे लिए
+                    सबसे ख़ूबसूरत तोहफा है। <br>धन्यवाद मेरी ज़िंदगी में आने के लिए, मुझे हंसाने के लिए, और ये महसूस
+                    कराने के लिए कि मैं इस दुनिया में अकेला नहीं हूँ।<br>
+
+                    धन्यवाद हर उस चीज़ के लिए जो तुमने मेरे लिए की, जो तुम कर रही हो, और जो तुम हमेशा करती रहोगी।<br>
+                    तुम्हारी मौजूदगी ही मेरी दुनिया को ख़ूबसूरत बना देती है। 💖🌍💕</q>
+            </p>
+            <button onclick="nextSlide()">केक काटने चलें! 🎂🎉</button>
+        </div>
+
+        <div class="slide hidden" id="slide5">
+            <h2>🎂 केक 🎂</h2>
+            <p>touch cake</p>
+            <p>
+                <img id="cakeGif" src="first_part.gif" alt="Cake GIF">
+                <img id="penguinGif" src="happy-fun.gif" alt="Penguin Blowing Candle" style="display: none;">
+            </p>
+            <button onclick="nextSlide()">अगला पेज</button>
+        </div>
+
+        <div class="slide hidden" id="slide6">
+            <h2>Some Memories</h2>
+            <p>तुम्हारे साथ बिताए कुछ ख़ास पलों की यादें।</p>
+            <button onclick="nextSlide()">🎁 तोहफा देखो</button>
+        </div>
+    </div>
+
+    <audio id="birthdaysong" src="song.mp3" style="display: none;"></audio>
+</body>
+<script>
+    let currentSlide = 1;
+    function nextSlide() {
+        let current = document.getElementById(`slide${currentSlide}`);
+        let next = document.getElementById(`slide${currentSlide + 1}`);
+
+        if (!next) return; // Stop if no more slides
+
+        current.classList.add("throw"); // Throw away current slide
+        if (next.id === "slide5") {
+            document.getElementById('birthdaysong').play();
+        }
+        if (next.id === "slide6") {
+            document.getElementById('birthdaysong').pause();
+            document.getElementById('container').style.display = "none";
+        }
+        setTimeout(() => {
+            current.classList.add("hidden"); // Hide the current slide after animation
+            next.classList.remove("hidden"); // Show the next slide
+            next.classList.add("fadeIn"); // Apply fade-in effect
+
+            currentSlide++;
+        }, 600); // Matches the animation duration
+    }
+    document.getElementById("cakeGif").addEventListener("click", function() {
+        this.style.display = "none"; // Hide first GIF
+           document.getElementById("penguinGif").style.display = "block"; // Show second GIF
+        });
+</script>
+
+</html> 
